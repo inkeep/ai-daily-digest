@@ -4,8 +4,10 @@
   "description": "A scaffold template for Slack apps",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "lint": "eslint --ext .js ."
+    "dev": "NODE_ENV=development ts-node src/app.ts",
+    "start": "NODE_ENV=production node dist/app.js",
+    "build": "esbuild ./src/app.ts --bundle --platform=node --outdir=./dist",
+    "generate": "drizzle-kit generate"
   },
   "author": "Slack Technologies, LLC",
   "license": "MIT",
@@ -23,9 +25,15 @@
   },
   "dependencies": {
     "@slack/bolt": "^3.18.0",
-    "dotenv": "~16.4.5"
+    "cron": "^3.1.7",
+    "dotenv": "~16.4.5",
+    "drizzle-kit": "^0.21.4",
+    "drizzle-orm": "^0.30.10",
+    "pg": "^8.11.5",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@types/pg": "^8.11.6",
     "eslint": "~8.57.0",
     "eslint-config-airbnb-base": "~15.0.0",
     "eslint-plugin-import": "~2.29.1"
